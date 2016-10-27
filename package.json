@@ -5,7 +5,9 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon server/server.js"
+    "lint": "esw --fix -w .",
+    "serve": "nodemon server/server.js",
+    "start": "run-p lint serve"
   },
   "repository": {
     "type": "git",
@@ -18,7 +20,13 @@
   },
   "homepage": "https://github.com/rutgers/ISN-MainServer#readme",
   "devDependencies": {
-    "nodemon": "^1.11.0"
+    "concurrently": "^3.1.0",
+    "cpx": "^1.5.0",
+    "eslint": "^3.8.1",
+    "eslint-plugin-angular": "^1.4.1",
+    "eslint-watch": "^2.1.14",
+    "nodemon": "^1.11.0",
+    "npm-run-all": "^3.1.1"
   },
   "dependencies": {
     "body-parser": "^1.15.2",
