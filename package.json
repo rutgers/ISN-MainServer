@@ -1,0 +1,29 @@
+{
+  "name": "rutgers-ieee-isn-mainserver",
+  "version": "0.0.0",
+  "description": "Main server application for the Rutgers IEEE ISN workshop.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon server/server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rutgers/ISN-MainServer.git"
+  },
+  "author": "Rutgers IEEE ISN Team",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/rutgers/ISN-MainServer/issues"
+  },
+  "homepage": "https://github.com/rutgers/ISN-MainServer#readme",
+  "devDependencies": {
+    "nodemon": "^1.11.0"
+  },
+  "dependencies": {
+    "body-parser": "^1.15.2",
+    "express": "^4.14.0",
+    "method-override": "^2.3.6",
+    "morgan": "^1.7.0"
+  }
+}
