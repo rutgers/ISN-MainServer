@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" ng-app="isn-server">
     <head>
         <base href="/">
         <meta charset="utf-8">
@@ -10,6 +10,8 @@
 
         <!-- Bootstrap CSS -->
         <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+        <!-- Font Awesome -->
+        <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
 
         <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
         <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -18,11 +20,39 @@
     <body>
         <h1 class="text-center">Rutgers IEEE - Intelligent Sensor Network Monitor</h1>
 
+        <div ui-view></div>
         <!-- AngularJS -->
         <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.js"></script>
-        <!-- UI Boostrap  -->
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular-messages.js"></script>
+        <!-- UI Boostrap -->
         <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/2.1.4/ui-bootstrap-tpls.js"></script>
+        <!-- UI Router -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.3.1/angular-ui-router.js"></script>
+        <!-- Firebase -->
+        <script src="https://www.gstatic.com/firebasejs/3.5.2/firebase.js"></script>
+        <!-- AngularFire -->
+        <script src="https://cdn.firebase.com/libs/angularfire/2.1.0/angularfire.min.js"></script>
+
+        <!-- Initialize Firebase -->
+        <script>
+            // Initialize Firebase
+            var config = {
+                apiKey: "AIzaSyCWO5yfSkiNDAPEoprx9pEV36QfqD7WUUY",
+                authDomain: "rutgers-ieee-isn.firebaseapp.com",
+                databaseURL: "https://rutgers-ieee-isn.firebaseio.com",
+                storageBucket: "rutgers-ieee-isn.appspot.com",
+                messagingSenderId: "558449761212"
+            };
+            firebase.initializeApp(config);
+        </script>
 
         <!-- Custom JS -->
+        <script src="js/app.module.js"></script>
+        <script src="js/app.config.js"></script>
+        <script src="js/welcome-page/welcome-page.module.js"></script>
+        <script src="js/welcome-page/welcome-page.component.js"></script>
+        <script src="js/monitor-panel/monitor-panel.module.js"></script>
+        <script src="js/monitor-panel/monitor-panel.component.js"></script>
+        <script src="js/welcome-page/auth.service.js"></script>
     </body>
 </html>
