@@ -8,10 +8,10 @@ angular.module("isn-server.welcome-page")
     });
 
 
-WelcomePageController.$inject = ["authService"];
+WelcomePageController.$inject = ["AuthService"];
 
 
-function WelcomePageController(authService) {
+function WelcomePageController(AuthService) {
     var vm = this;
     var toggle = true;
 
@@ -30,7 +30,7 @@ function WelcomePageController(authService) {
 
 	// login the user
 	vm.loginUser = function(){
-		authService.$signInWithEmailAndPassword(vm.loginEmail,vm.loginPassword)
+		AuthService.$signInWithEmailAndPassword(vm.loginEmail,vm.loginPassword)
 		.then(function(userData){
 			console.log("Success");
 			vm.loginEmail = "";
@@ -52,7 +52,7 @@ function WelcomePageController(authService) {
 		}
 
 
-		authService.$createUserWithEmailAndPassword(vm.signupEmail,vm.signupPassword)
+		AuthService.$createUserWithEmailAndPassword(vm.signupEmail,vm.signupPassword)
 		.then(function(userData){
 			console.log("Success");
 			vm.signUpEmail = "";
