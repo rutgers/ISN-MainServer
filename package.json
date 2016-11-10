@@ -6,8 +6,9 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "lint": "esw --fix -w .",
+    "sass": "node-sass scss/style.scss client/css/style.css",
     "serve": "nodemon server/server.js",
-    "start": "run-p lint serve"
+    "start": "run-p lint sass serve"
   },
   "repository": {
     "type": "git",
@@ -23,6 +24,7 @@
     "eslint": "^3.8.1",
     "eslint-plugin-angular": "^1.4.1",
     "eslint-watch": "^2.1.14",
+    "node-sass": "^3.11.2",
     "nodemon": "^1.11.0",
     "npm-run-all": "^3.1.1"
   },
