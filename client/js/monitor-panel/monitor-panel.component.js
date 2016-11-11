@@ -7,6 +7,22 @@ angular.module("isn-server.monitor-panel")
         controller: MonitorPanelController,
     });
 
-function MonitorPanelController() {
+MonitorPanelController.$inject = ["AuthService"];
 
+
+
+function MonitorPanelController(AuthService) {
+        var vm= this;
+
+   vm.signoutUser = function() {
+
+      AuthService.$signOut()
+
+      .then(function() {
+        console.log('Signed Out');
+      },
+      (function(error) {
+        console.error(error);
+      });
+  }
 }
