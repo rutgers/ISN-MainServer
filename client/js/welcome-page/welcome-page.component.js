@@ -7,9 +7,9 @@ angular.module("isn-server.welcome-page")
         controller: WelcomePageController,
     });
 
-WelcomePageController.$inject = ["AuthService"];
+WelcomePageController.$inject = ["AuthService", "Socket"];
 
-function WelcomePageController(AuthService) {
+function WelcomePageController(AuthService, Socket) {
     var vm = this;
     var toggle = true;
 
@@ -19,6 +19,14 @@ function WelcomePageController(AuthService) {
     vm.signupEmail = "";
     vm.signupPassword = "";
     vm.confirmPassword = "";
+
+    Socket.emit("loaded", {
+        message: "Welcome page loaded!"
+    });
+
+    Socket.on("date", function(data) {
+        vm.date = data.date;
+    });
 
     //function for toggle, one for login, one for sign in
     vm.toggleLogin = function() {

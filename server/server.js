@@ -1,6 +1,7 @@
 //server.js
 //Author: Rutgers IEEE ISN Team
 
+var http = require("http");
 //Allows parsing of HTTP request bodies
 var bodyParser = require("body-parser");
 //Web framework for node that simplifies development of web apps
@@ -9,9 +10,12 @@ var express = require("express");
 var methodOverride = require("method-override");
 //Logs HTTP requests to the console
 var morgan = require("morgan");
+var socketIO = require("socket.io");
 
 //Initialize express application
 var app = express();
+var server = http.Server(app);
+var io = socketIO(server);
 
 //Set up middleware for application
 //Set up static files to be served
@@ -33,8 +37,21 @@ app.get("/", function(req, res) {
 //Otherwise, use 8080
 var port = process.env.PORT || 8080;
 
+io.on("connection", function(socket) {
+    console.log("User connected!");
+    socket.on("loaded", function(data) {
+        console.log(data.message);
+    });
+
+    setInterval(function() {
+        socket.emit("date", {
+            date: new Date()
+        });
+    }, 1000);
+});
+
 //Listen for connections on port
-app.listen(port, function(err) {
+server.listen(port, function(err) {
     if (err) console.log("Error: " + err);
 
     console.log("Server currently listening on port " + port + "!");
