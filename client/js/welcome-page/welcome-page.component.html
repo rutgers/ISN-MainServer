@@ -1,19 +1,23 @@
 <div class="row">
     <div class="col-md-offset-4 col-md-4">
-        <form novalidate ng-show="$ctrl.toggle">
-            <h4>Login here:</h4>
-            <div class="form-group">
+        <form name="loginForm" ng-show="$ctrl.toggle" novalidate>
+            <div class="form-group" ng-class="{ 'has-error' : loginForm.email.$invalid && loginForm.email.$touched }">
                 <label>E-mail:</label>
-                <input type="email" class="form-control" name="email" required
-                ng-model="$ctrl.loginEmail">
+                <input type="email" class="form-control" name="email" ng-model="$ctrl.loginEmail" required>
             </div>
-            <div class="form-group">
+            <div class="help-block" ng-messages="loginForm.email.$error" ng-if="loginForm.email.$touched">
+                <p ng-message="required">Your email is required.</p>
+                <p ng-message="email">Your email is invalid.</p>
+            </div>
+            <div class="form-group" ng-class="{ 'has-error' : loginForm.password.$invalid && loginForm.password.$touched }">
                 <label>Password:</label>
-                <input type="password" class="form-control" name="password" required
-                ng-model="$ctrl.loginPassword">
+                <input type="password" class="form-control" name="password" ng-model="$ctrl.loginPassword" required>
+            </div>
+            <div class="help-block" ng-messages="loginForm.password.$error" ng-if="loginForm.password.$touched">
+                <p ng-message="required">Your password is required.</p>
             </div>
             <button type="submit" class="btn btn-lg btn-success" ng-click="$ctrl.loginUser()">
-                <i class="fa fa-sign-in" ></i>&nbsp; Login!</button>
+                <i class="fa fa-sign-in" ></i>&nbsp; Submit login!</button>
             <button class="btn btn-lg btn-warning" ng-click="$ctrl.toggleLogin()">
                 <i class="fa fa-sign-in"></i>&nbsp; Signup here!</button>
         </form>
@@ -21,25 +25,32 @@
 </div>
 <div class="row">
     <div class="col-md-offset-4 col-md-4">
-        <form novalidate ng-hide="$ctrl.toggle">
-            <h4>Signup here:</h4>
-            <div class="form-group">
+        <form name="signupForm" ng-hide="$ctrl.toggle" novalidate>
+            <div class="form-group" ng-class="{ 'has-error' : signupForm.email.$invalid && signupForm.email.$touched }">
                 <label>E-mail:</label>
-                <input type="email" class="form-control" name="email" required
-                ng-model="$ctrl.signUpEmail">
+                <input type="email" class="form-control" name="email" ng-model="$ctrl.signupEmail" required>
             </div>
-            <div class="form-group">
+            <div class="help-block" ng-messages="signupForm.email.$error" ng-if="signupForm.email.$touched">
+                <p ng-message="required">Your email is required.</p>
+                <p ng-message="email">Your email is invalid.</p>
+            </div>
+            <div class="form-group" ng-class="{ 'has-error' : signupForm.password.$invalid && signupForm.password.$touched }">
                 <label>Password:</label>
-                <input type="password" class="form-control" name="password" required
-                ng-model="$ctrl.signupPassword">
+                <input type="password" class="form-control" name="password" ng-model="$ctrl.signupPassword" ng-minlength="6" required>
             </div>
-            <div class="form-group">
+            <div class="help-block" ng-messages="signupForm.password.$error" ng-if="signupForm.password.$touched">
+                <p ng-message="required">Your password is required.</p>
+                <p ng-message="minlength">Your password must be at least 6 characters long.</p>
+            </div>
+            <div class="form-group" ng-class="{ 'has-error' : signupForm.confirmPassword.$invalid && signupForm.confirmPassword.$touched }">
                 <label>Confirm password:</label>
-                <input type="password" class="form-control" name="confirmPassword" required
-                ng-model="$ctrl.confirmPassword">
+                <input type="password" class="form-control" name="confirmPassword" ng-model="$ctrl.confirmPassword" required>
+            </div>
+            <div class="help-block" ng-messages="signupForm.confirmPassword.$error" ng-if="signupForm.confirmPassword.$touched">
+                <p ng-message="required">Your (confirmed) password is required.</p>
             </div>
             <button type="submit" class="btn btn-lg btn-success" ng-click="$ctrl.signupUser()">
-                <i class="fa fa-upload"></i>&nbsp; Signup!</button>
+                <i class="fa fa-upload"></i>&nbsp; Submit signup!</button>
             <button class="btn btn-lg btn-warning" ng-click="$ctrl.toggleLogin()">
                 <i class="fa fa-sign-in"></i>&nbsp; Login here!</button>
         </form>

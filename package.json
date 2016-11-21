@@ -20,6 +20,45 @@
     "url": "https://github.com/rutgers/ISN-MainServer/issues"
   },
   "homepage": "https://github.com/rutgers/ISN-MainServer#readme",
+  "eslintConfig": {
+      "env": {
+          "browser": true,
+          "commonjs": true,
+          "es6": true,
+          "node": true
+      },
+      "extends": "eslint:recommended",
+      "parserOptions": {
+          "sourceType": "module"
+      },
+      "plugins": [
+          "angular"
+      ],
+      "globals": {
+          "angular": true
+      },
+      "rules": {
+          "indent": [
+              "error",
+              4
+          ],
+          "linebreak-style": [
+              "error",
+              "unix"
+          ],
+          "quotes": [
+              "error",
+              "double"
+          ],
+          "semi": [
+              "error",
+              "always"
+          ],
+          "no-console": [
+              "off"
+          ]
+      }
+  },
   "devDependencies": {
     "eslint": "^3.8.1",
     "eslint-plugin-angular": "^1.4.1",

@@ -7,11 +7,12 @@ angular.module("isn-server.welcome-page")
         controller: WelcomePageController,
     });
 
-WelcomePageController.$inject = ["AuthService"];
+WelcomePageController.$inject = ["AuthService", "$state"];
 
-function WelcomePageController(AuthService) {
+function WelcomePageController(AuthService, $state) {
     var vm = this;
-    var toggle = true;
+
+    vm.toggle = true;
 
     vm.loginEmail = "";
     vm.loginPassword = "";
@@ -28,11 +29,11 @@ function WelcomePageController(AuthService) {
     // login the user
     vm.loginUser = function() {
         AuthService.$signInWithEmailAndPassword(vm.loginEmail, vm.loginPassword)
-            .then(function(userData) {
-                console.log("Success");
+            .then(function(authUser) {
+                console.log("User logged in with user id:" + authUser.uid);
                 vm.loginEmail = "";
                 vm.loginPassword = "";
-
+                $state.go("account");
             })
             .catch(function(error) {
                 console.log(error);
@@ -48,8 +49,8 @@ function WelcomePageController(AuthService) {
         }
 
         AuthService.$createUserWithEmailAndPassword(vm.signupEmail, vm.signupPassword)
-            .then(function(userData) {
-                console.log("Success");
+            .then(function(authUser) {
+                console.log("User created with user id:" + authUser.uid);
                 vm.signUpEmail = "";
                 vm.signUpPassword = "";
                 vm.confirmPassword = "";
