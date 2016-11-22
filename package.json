@@ -21,43 +21,43 @@
   },
   "homepage": "https://github.com/rutgers/ISN-MainServer#readme",
   "eslintConfig": {
-      "env": {
-          "browser": true,
-          "commonjs": true,
-          "es6": true,
-          "node": true
-      },
-      "extends": "eslint:recommended",
-      "parserOptions": {
-          "sourceType": "module"
-      },
-      "plugins": [
-          "angular"
+    "env": {
+      "browser": true,
+      "commonjs": true,
+      "es6": true,
+      "node": true
+    },
+    "extends": "eslint:recommended",
+    "parserOptions": {
+      "sourceType": "module"
+    },
+    "plugins": [
+      "angular"
+    ],
+    "globals": {
+      "angular": true
+    },
+    "rules": {
+      "indent": [
+        "error",
+        4
       ],
-      "globals": {
-          "angular": true
-      },
-      "rules": {
-          "indent": [
-              "error",
-              4
-          ],
-          "linebreak-style": [
-              "error",
-              "unix"
-          ],
-          "quotes": [
-              "error",
-              "double"
-          ],
-          "semi": [
-              "error",
-              "always"
-          ],
-          "no-console": [
-              "off"
-          ]
-      }
+      "linebreak-style": [
+        "error",
+        "unix"
+      ],
+      "quotes": [
+        "error",
+        "double"
+      ],
+      "semi": [
+        "error",
+        "always"
+      ],
+      "no-console": [
+        "off"
+      ]
+    }
   },
   "devDependencies": {
     "eslint": "^3.8.1",
@@ -65,7 +65,11 @@
     "eslint-watch": "^2.1.14",
     "node-sass": "^3.11.2",
     "nodemon": "^1.11.0",
-    "npm-run-all": "^3.1.1"
+    "npm-run-all": "^3.1.1",
+    "rollup": "^0.36.3",
+    "rollup-plugin-commonjs": "^5.0.5",
+    "rollup-plugin-node-resolve": "^2.0.0",
+    "rollup-watch": "^2.5.0"
   },
   "dependencies": {
     "body-parser": "^1.15.2",

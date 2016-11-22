@@ -51,8 +51,8 @@ function WelcomePageController(AuthService, $state) {
         AuthService.$createUserWithEmailAndPassword(vm.signupEmail, vm.signupPassword)
             .then(function(authUser) {
                 console.log("User created with user id:" + authUser.uid);
-                vm.signUpEmail = "";
-                vm.signUpPassword = "";
+                vm.signupEmail = "";
+                vm.signupPassword = "";
                 vm.confirmPassword = "";
             })
             .catch(function(error) {
