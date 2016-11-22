@@ -1,11 +1,10 @@
 // welcome-page.component.js
 // Author: Jeremy Savarin
 
-angular.module("isn-server.welcome-page")
-    .component("isnWelcomePage", {
-        templateUrl: "js/welcome-page/welcome-page.component.html",
-        controller: WelcomePageController,
-    });
+module.exports = {
+    templateUrl: "js/welcome-page/welcome-page.component.html",
+    controller: WelcomePageController,
+};
 
 WelcomePageController.$inject = ["AuthService", "$state"];
 
@@ -51,8 +50,8 @@ function WelcomePageController(AuthService, $state) {
         AuthService.$createUserWithEmailAndPassword(vm.signupEmail, vm.signupPassword)
             .then(function(authUser) {
                 console.log("User created with user id:" + authUser.uid);
-                vm.signUpEmail = "";
-                vm.signUpPassword = "";
+                vm.signupEmail = "";
+                vm.signupPassword = "";
                 vm.confirmPassword = "";
             })
             .catch(function(error) {

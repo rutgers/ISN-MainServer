@@ -5,10 +5,11 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
+    "bundle": "rollup -c -w",
     "lint": "esw --fix -w .",
     "sass": "node-sass scss/style.scss client/css/style.css",
     "serve": "nodemon server/server.js",
-    "start": "run-p lint sass serve"
+    "start": "run-p lint bundle sass serve"
   },
   "repository": {
     "type": "git",
@@ -71,11 +72,18 @@
     "rollup": "^0.36.3",
     "rollup-plugin-babel": "^2.6.1",
     "rollup-plugin-commonjs": "^5.0.5",
-    "rollup-plugin-node-resolve": "^2.0.0"
+    "rollup-plugin-node-resolve": "^2.0.0",
+    "rollup-watch": "^2.5.0"
   },
   "dependencies": {
+    "angular": "^1.5.8",
+    "angular-messages": "^1.5.8",
+    "angular-ui-bootstrap": "^2.2.0",
+    "angular-ui-router": "^0.3.2",
+    "angularfire": "^2.1.0",
     "body-parser": "^1.15.2",
     "express": "^4.14.0",
+    "firebase": "^3.6.1",
     "method-override": "^2.3.6",
     "morgan": "^1.7.0"
   }
