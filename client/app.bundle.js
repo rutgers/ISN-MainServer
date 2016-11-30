@@ -1,3 +1,4 @@
+var isnMainServer = (function () {
 /**
  * @license AngularJS v1.5.8
  * (c) 2010-2016 Google, Inc. http://angularjs.org
@@ -40039,9 +40040,9 @@ var welcomePage_component = {
     controller: WelcomePageController,
 };
 
-WelcomePageController.$inject = ["AuthService", "$state"];
+WelcomePageController.$inject = ["AuthService", "$state", "Socket"];
 
-function WelcomePageController(AuthService, $state) {
+function WelcomePageController(AuthService, $state, Socket) {
     var vm = this;
 
     vm.toggle = true;
@@ -40052,6 +40053,14 @@ function WelcomePageController(AuthService, $state) {
     vm.signupEmail = "";
     vm.signupPassword = "";
     vm.confirmPassword = "";
+
+    Socket.emit("loaded", {
+        message: "Welcome page loaded!"
+    });
+
+    Socket.on("date", function(data) {
+        vm.date = data.date;
+    });
 
     //function for toggle, one for login, one for sign in
     vm.toggleLogin = function() {
@@ -40113,11 +40122,15 @@ var monitorPanel_component = {
     controller: MonitorPanelController,
 };
 
-MonitorPanelController.$inject = ["AuthService", "$state"];
+MonitorPanelController.$inject = ["AuthService", "$state", "Socket"];
 
-function MonitorPanelController(AuthService, $state) {
+function MonitorPanelController(AuthService, $state, Socket) {
     var vm = this;
 
+    Socket.on("date", function(data) {
+        vm.date = data.date;
+    });
+    
     vm.signoutUser = function() {
         AuthService.$signOut()
             .then(function() {
@@ -40139,6 +40152,19 @@ var MonitorPanelComponent = monitorPanel_component;
 
 var monitorPanel_module = angular$4.module("isn-server.monitor-panel", [])
     .component("isnMonitorPanel", MonitorPanelComponent);
+
+//socket.service.js
+//Author: Rutgers IEEE ISN Team
+
+function Socket$1(socketFactory) {
+    return socketFactory({
+        prefix: ""
+    });
+}
+
+Socket$1.$inject = ["socketFactory"];
+
+var socket_service = Socket$1;
 
 //app.config.js
 //Author: Rutgers IEEE ISN Team
@@ -40212,17 +40238,24 @@ var firebase$1 = index$4;
 var WelcomePage = welcomePage_module;
 var MonitorPanel = monitorPanel_module;
 
+var Socket = socket_service;
+
 var config = app_config;
 var run = app_run;
 
-angular$1.module("isn-server", [firebase$1, uiRouter, ngMessages,
+
+angular$1.module("isn-server", [firebase$1, uiRouter, ngMessages, "btford.socket-io",
     WelcomePage.name, MonitorPanel.name
 ])
     .run(run)
-    .config(config);
+    .config(config)
+    .factory("Socket", Socket);
 
 var app_module = {
 
 };
 
-module.exports = app_module;
+return app_module;
+
+}());
+//# sourceMappingURL=app.bundle.js.map

@@ -7,7 +7,10 @@ import nodeResolve from "rollup-plugin-node-resolve";
 export default {
     entry: "client/js/app.module.js",
     dest: "client/app.bundle.js",
-    format: "cjs",
+    format: "iife",
+    sourceMap: true,
+    sourceMapFile: "client/app.bundle.js",
+    moduleName: "isnMainServer",
     useStrict: false,
     plugins: [
         nodeResolve({

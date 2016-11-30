@@ -6,11 +6,15 @@ module.exports = {
     controller: MonitorPanelController,
 };
 
-MonitorPanelController.$inject = ["AuthService", "$state"];
+MonitorPanelController.$inject = ["AuthService", "$state", "Socket"];
 
-function MonitorPanelController(AuthService, $state) {
+function MonitorPanelController(AuthService, $state, Socket) {
     var vm = this;
 
+    Socket.on("date", function(data) {
+        vm.date = data.date;
+    });
+    
     vm.signoutUser = function() {
         AuthService.$signOut()
             .then(function() {

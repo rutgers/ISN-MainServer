@@ -78,6 +78,7 @@
   "dependencies": {
     "angular": "^1.5.8",
     "angular-messages": "^1.5.8",
+    "angular-socket-io": "^0.7.0",
     "angular-ui-bootstrap": "^2.2.0",
     "angular-ui-router": "^0.3.2",
     "angularfire": "^2.1.0",
@@ -85,6 +86,7 @@
     "express": "^4.14.0",
     "firebase": "^3.6.1",
     "method-override": "^2.3.6",
-    "morgan": "^1.7.0"
+    "morgan": "^1.7.0",
+    "socket.io": "^1.7.1"
   }
 }

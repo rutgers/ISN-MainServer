@@ -6,9 +6,9 @@ module.exports = {
     controller: WelcomePageController,
 };
 
-WelcomePageController.$inject = ["AuthService", "$state"];
+WelcomePageController.$inject = ["AuthService", "$state", "Socket"];
 
-function WelcomePageController(AuthService, $state) {
+function WelcomePageController(AuthService, $state, Socket) {
     var vm = this;
 
     vm.toggle = true;
@@ -19,6 +19,14 @@ function WelcomePageController(AuthService, $state) {
     vm.signupEmail = "";
     vm.signupPassword = "";
     vm.confirmPassword = "";
+
+    Socket.emit("loaded", {
+        message: "Welcome page loaded!"
+    });
+
+    Socket.on("date", function(data) {
+        vm.date = data.date;
+    });
 
     //function for toggle, one for login, one for sign in
     vm.toggleLogin = function() {
