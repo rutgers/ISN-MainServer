@@ -1,27 +1,6 @@
 //app.config.js
 //Author: Rutgers IEEE ISN Team
 
-// for ui-router
-
-angular.module("isn-server")
-    .run(StateRun)
-    .config(StateConfig);
-
-StateRun.$inject = ["$rootScope", "$state"];
-
-function StateRun($rootScope, $state) {
-    $rootScope.$on("$stateChangeError", function(event, toState,
-        toParams, fromState, fromParams, error) {
-        // We can catch the error thrown when the $requireSignIn promise is rejected
-        // and redirect the user back to the home page
-        if(error === "AUTH_REQUIRED") {
-            $state.go("home");
-        }
-    });
-}
-
-StateConfig.$inject = ["$stateProvider", "$urlRouterProvider"];
-
 function StateConfig($stateProvider, $urlRouterProvider) {
     $urlRouterProvider.otherwise("/home");
 
@@ -56,3 +35,7 @@ function StateConfig($stateProvider, $urlRouterProvider) {
             }
         });
 }
+
+StateConfig.$inject = ["$stateProvider", "$urlRouterProvider"];
+
+module.exports = StateConfig;

@@ -6,9 +6,10 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "lint": "esw --fix -w .",
+    "bundle": "rollup -c -w",
     "sass": "node-sass scss/style.scss client/css/style.css",
     "serve": "nodemon server/server.js",
-    "start": "run-p lint sass serve"
+    "start": "run-p lint bundle sass serve"
   },
   "repository": {
     "type": "git",
@@ -60,7 +61,7 @@
     }
   },
   "devDependencies": {
-    "eslint": "^3.8.1",
+    "eslint": "^3.10.2",
     "eslint-plugin-angular": "^1.4.1",
     "eslint-watch": "^2.1.14",
     "node-sass": "^3.11.2",
@@ -72,9 +73,15 @@
     "rollup-watch": "^2.5.0"
   },
   "dependencies": {
+    "angular": "^1.5.8",
+    "angular-messages": "^1.5.8",
+    "angular-ui-bootstrap": "^2.2.0",
+    "angular-ui-router": "^0.3.2",
+    "angularfire": "^2.1.0",
     "body-parser": "^1.15.2",
     "express": "^4.14.0",
     "method-override": "^2.3.6",
-    "morgan": "^1.7.0"
+    "morgan": "^1.7.0",
+    "nodemon": "^1.11.0"
   }
 }
