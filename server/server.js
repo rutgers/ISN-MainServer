@@ -10,12 +10,12 @@ var express = require("express");
 var methodOverride = require("method-override");
 //Logs HTTP requests to the console
 var morgan = require("morgan");
-var socketIO = require("socket.io");
+var ws = require("ws");
 
 //Initialize express application
 var app = express();
 var server = http.Server(app);
-var io = socketIO(server);
+var wss = new ws.Server({server: server});
 
 //Set up middleware for application
 //Set up static files to be served
@@ -37,17 +37,20 @@ app.get("/", function(req, res) {
 //Otherwise, use 8080
 var port = process.env.PORT || 8080;
 
-io.on("connection", function(socket) {
+wss.on("connection", function(ws) {
     console.log("User connected!");
-    socket.on("loaded", function(data) {
-        console.log(data.message);
-    });
 
-    setInterval(function() {
-        socket.emit("date", {
-            date: new Date()
+    ws.on("message", function(message) {
+        console.log("Received message!: " + message);
+        wss.clients.forEach(function(client) {
+            client.send(message);
         });
-    }, 1000);
+    });
+    // ws.send(JSON.stringify({
+    //     date: new Date(),
+    //     temp: "54",
+    //     humid: "32"
+    // }));
 });
 
 //Listen for connections on port
