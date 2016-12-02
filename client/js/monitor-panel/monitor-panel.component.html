@@ -1,5 +1,26 @@
 <div class="text-center">
-    <h1 class="text-center">We made it boyz!</h1>
-    <button ng-click="$ctrl.signoutUser()"class="btn btn-lg btn-warning">
+    <button ng-click="$ctrl.signoutUser()" class="btn btn-lg btn-warning">
         <i class="fa fa-sign-out"></i>&nbsp; Sign out!</button>
+</div>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-lg-8 col-lg-offset-2">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Module</th>
+                        <th>Temperature</th>
+                        <th>Humidity</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>{{$ctrl.name}}</td>
+                        <td>{{$ctrl.temp}}</td>
+                        <td>{{$ctrl.humid}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
 </div>

@@ -3,14 +3,18 @@
 
 var angular = require("angular");
 
-var firebase = require("angularfire");
-var uiBootstrap = require("angular-ui-bootstrap");
-var uiRouter = require("angular-ui-router");
 var ngMessages = require("angular-messages");
+var uiRouter = require("angular-ui-router");
+var firebase = require("angularfire");
 
-var WelcomePage = require("./welcome-page/welcome-page.component");
-var MonitorPanel = require("./monitor-panel/monitor-panel.component");
+var WelcomePage = require("./welcome-page/welcome-page.module");
+var MonitorPanel = require("./monitor-panel/monitor-panel.module");
 
-angular.module("isn-server", [firebase, uiRouter, uiBootstrap, ngMessages,
+var config = require("./app.config");
+var run = require("./app.run");
+
+angular.module("isn-server", [firebase, uiRouter, ngMessages, "ngWebSocket",
     WelcomePage.name, MonitorPanel.name
-]);
+])
+    .run(run)
+    .config(config);

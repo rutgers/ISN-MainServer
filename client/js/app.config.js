@@ -1,7 +1,7 @@
 //app.config.js
 //Author: Rutgers IEEE ISN Team
 
-function StateConfig($stateProvider, $urlRouterProvider) {
+function config($stateProvider, $urlRouterProvider) {
     $urlRouterProvider.otherwise("/home");
 
     $stateProvider
@@ -36,6 +36,6 @@ function StateConfig($stateProvider, $urlRouterProvider) {
         });
 }
 
-StateConfig.$inject = ["$stateProvider", "$urlRouterProvider"];
+config.$inject = ["$stateProvider", "$urlRouterProvider"];
 
-module.exports = StateConfig;
+module.exports = config;

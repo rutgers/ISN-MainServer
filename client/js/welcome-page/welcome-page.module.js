@@ -6,6 +6,6 @@ var angular = require("angular");
 var AuthService = require("./auth.service");
 var WelcomePageComponent = require("./welcome-page.component");
 
-angular.module("isn-server.welcome-page", [])
+module.exports = angular.module("isn-server.welcome-page", [])
     .component("isnWelcomePage", WelcomePageComponent)
     .factory("AuthService", AuthService);

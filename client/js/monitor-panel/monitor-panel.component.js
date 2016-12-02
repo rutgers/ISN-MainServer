@@ -6,10 +6,23 @@ module.exports = {
     controller: MonitorPanelController,
 };
 
-MonitorPanelController.$inject = ["AuthService", "$state"];
+MonitorPanelController.$inject = ["AuthService", "$state", "$websocket"];
 
-function MonitorPanelController(AuthService, $state) {
+function MonitorPanelController(AuthService, $state, $websocket) {
     var vm = this;
+
+    var dataStream = $websocket("ws://rutgersisn.localtunnel.me");
+
+    var message = null;
+
+    dataStream.onMessage(function(msg) {
+        message = JSON.parse(msg.data);
+        console.log(message);
+
+        vm.name = message.name;
+        vm.temp = message.temp;
+        vm.humid = message.humid;
+    });
 
     vm.signoutUser = function() {
         AuthService.$signOut()
