@@ -14,7 +14,7 @@ var config = {
         filename: "app.bundle.js"
     },
     //Use sourcemaps
-    devtool: "source-map",
+    devtool: "eval-source-map",
     module: {
         rules: [{
             enforce: "pre",

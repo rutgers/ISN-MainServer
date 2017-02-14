@@ -6,8 +6,8 @@
   "scripts": {
     "clean": "rimraf client/app.bundle.js client/app.bundle.js.map dist/",
     "prebuild:watch": "npm run clean",
-    "build:watch": "run-p lint bundle sass",
-    "bundle": "webpack --progress --colors",
+    "build:watch": "run-p lint bundle:watch sass",
+    "bundle": "webpack -d --progress --colors",
     "bundle:watch": "npm run bundle -- --watch",
     "lint": "esw --fix .",
     "lint:watch": "watch \"npm run lint\" client/js server/ tessel/",
@@ -92,6 +92,7 @@
   },
   "dependencies": {
     "angular": "^1.5.8",
+    "angular-chart.js": "^1.1.1",
     "angular-messages": "^1.5.8",
     "angular-socket-io": "^0.7.0",
     "angular-ui-bootstrap": "^2.2.0",
@@ -99,6 +100,7 @@
     "angular-websocket": "^2.0.1",
     "angularfire": "^2.1.0",
     "body-parser": "^1.15.2",
+    "chart.js": "^2.5.0",
     "express": "^4.14.0",
     "firebase": "^3.6.1",
     "method-override": "^2.3.6",

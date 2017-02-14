@@ -18,6 +18,11 @@ function MonitorPanelController(AuthService, $state, $websocket) {
     var tessel2 = null;
     var tessel3 = null;
 
+    vm.points = [1, 2, 3, 4, 5];
+    vm.series = ["Sensor data"];
+    vm.options = {};
+    vm.labels = ["A", "B", "C"];
+
     dataStream.onMessage(function(msg) {
         message = JSON.parse(msg.data);
         console.log(message);
