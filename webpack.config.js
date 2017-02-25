@@ -7,14 +7,15 @@ var config = {
     //Root for front end
     context: __dirname + "/client",
     //Entry point
-    entry: "./js/app.module.js",
+    entry: "./app.module.js",
     //Output files
     output: {
-        path: __dirname + "/client",
+        path: __dirname + "/dist",
         filename: "app.bundle.js"
     },
     //Use sourcemaps
     devtool: "source-map",
+    watch: true,
     module: {
         rules: [{
             enforce: "pre",
@@ -35,12 +36,13 @@ var config = {
         new webpack.optimize.UglifyJsPlugin({
             compress: {
                 warnings: false
-            }
+            },
+            sourceMap: true
         }),
         new webpack.NoEmitOnErrorsPlugin(),
-        // new HtmlWebpackPlugin({
-        //     template: "index.html"
-        // }),
+        new HtmlWebpackPlugin({
+            template: "index.html"
+        }),
         new CleanWebpackPlugin(["dist"])
     ]
 };

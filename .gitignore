@@ -1,3 +1,2 @@
 node_modules/
-client/css/
-client/app.bundle.js*
+dist/  

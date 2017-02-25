@@ -1,8 +1,6 @@
 // welcome-page.module.js
 // Author: Rutgers IEEE ISN Team
 
-var angular = require("angular");
-
 var AuthService = require("./auth.service");
 var WelcomePageComponent = require("./welcome-page.component");
 

@@ -4,15 +4,11 @@
   "description": "Main server application for the Rutgers IEEE ISN workshop.",
   "main": "index.js",
   "scripts": {
-    "clean": "rimraf client/app.bundle.js client/app.bundle.js.map dist/",
-    "prebuild:watch": "npm run clean",
-    "build:watch": "run-p lint bundle sass",
+    "build:watch": "run-p lint bundle",
     "bundle": "webpack --progress --colors",
     "bundle:watch": "npm run bundle -- --watch",
     "lint": "esw --fix .",
-    "lint:watch": "watch \"npm run lint\" client/js server/ tessel/",
-    "sass": "node-sass scss/style.scss client/css/style.css",
-    "sass:watch": "watch \"npm run sass\" scss/",
+    "lint:watch": "watch \"npm run lint\" client/ server/ tessel/",
     "serve": "nodemon server/server.js",
     "host": "lt -s rutgersisn -p 8080",
     "start": "run-p build:watch serve host"

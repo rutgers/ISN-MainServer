@@ -2,7 +2,7 @@
 // Author: Jeremy Savarin
 
 module.exports = {
-    templateUrl: "js/welcome-page/welcome-page.component.html",
+    template: require("./welcome-page.component.html"),
     controller: WelcomePageController,
 };
 

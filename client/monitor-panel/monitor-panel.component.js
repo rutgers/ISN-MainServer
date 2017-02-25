@@ -2,7 +2,7 @@
 // Author: Rutgers IEEE ISN Team
 
 module.exports = {
-    templateUrl: "js/monitor-panel/monitor-panel.component.html",
+    template: require("./monitor-panel.component.html"),
     controller: MonitorPanelController,
 };
 

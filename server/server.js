@@ -19,7 +19,7 @@ var wss = new ws.Server({server: server});
 
 //Set up middleware for application
 //Set up static files to be served
-app.use(express.static(__dirname +"/../client"));
+app.use(express.static(__dirname +"/../dist"));
 //Log HTTP requests to console (dev = colors!)
 app.use(morgan("dev"));
 //Parse url-encoded data
