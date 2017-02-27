@@ -2,16 +2,16 @@
 // Author: Rutgers IEEE ISN Team
 
 module.exports = {
-    template: require("./monitor-panel.component.html"),
+    template: require('./monitor-panel.component.html'),
     controller: MonitorPanelController,
 };
 
-MonitorPanelController.$inject = ["AuthService", "$state", "$websocket"];
+MonitorPanelController.$inject = ['AuthService', '$state', '$websocket'];
 
 function MonitorPanelController(AuthService, $state, $websocket) {
     var vm = this;
 
-    var dataStream = $websocket("ws://rutgersisn.localtunnel.me");
+    var dataStream = $websocket('ws://rutgersisn.localtunnel.me');
 
     var message = null;
     var tessel1 = null;
@@ -22,15 +22,15 @@ function MonitorPanelController(AuthService, $state, $websocket) {
         message = JSON.parse(msg.data);
         console.log(message);
 
-        if (message.name === "Kumquat") {
+        if (message.name === 'Kumquat') {
             vm.kname = message.name;
             vm.ktemp = message.temp;
             vm.khumid = message.humid;
-        } else if (message.name === "IEEE") {
+        } else if (message.name === 'IEEE') {
             vm.iname = message.name;
             vm.itemp = message.temp;
             vm.ihumid = message.humid;
-        } else if (message.name === "MrPresident") {
+        } else if (message.name === 'MrPresident') {
             vm.pname = message.name;
             vm.ptemp = message.temp;
             vm.phumid = message.humid;
@@ -40,8 +40,8 @@ function MonitorPanelController(AuthService, $state, $websocket) {
     vm.signoutUser = function() {
         AuthService.$signOut()
             .then(function() {
-                console.log("Signed Out");
-                $state.go("home");
+                console.log('Signed Out');
+                $state.go('home');
             })
             .catch(function(error) {
                 console.error(error);
