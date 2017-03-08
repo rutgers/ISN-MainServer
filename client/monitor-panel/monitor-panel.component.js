@@ -6,9 +6,9 @@ module.exports = {
     controller: MonitorPanelController,
 };
 
-MonitorPanelController.$inject = ['AuthService', '$state', '$websocket'];
+MonitorPanelController.$inject = ['$state', '$websocket'];
 
-function MonitorPanelController(AuthService, $state, $websocket) {
+function MonitorPanelController($state, $websocket) {
     var vm = this;
 
     var dataStream = $websocket('ws://rutgersisn.localtunnel.me');
@@ -36,15 +36,4 @@ function MonitorPanelController(AuthService, $state, $websocket) {
             vm.phumid = message.humid;
         }
     });
-
-    vm.signoutUser = function() {
-        AuthService.$signOut()
-            .then(function() {
-                console.log('Signed Out');
-                $state.go('home');
-            })
-            .catch(function(error) {
-                console.error(error);
-            });
-    };
 }

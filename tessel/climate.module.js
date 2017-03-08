@@ -2,36 +2,36 @@
 //Author: Rutgers IEEE ISN Team
 
 //Require tessel module
-var tessel = require("tessel");
+var tessel = require('tessel');
 //Climate module library
-var climatelib = require("climate-si7020");
+var climatelib = require('climate-si7020');
 //For websocket connections
-var WebSocket = require("ws");
+var WebSocket = require('ws');
 //To get name of tessel w/ os.hostname()
-var os = require("os");
+var os = require('os');
 
 //Use Tessel port A for climate
-var climate = climatelib.use(tessel.port["A"]);
+var climate = climatelib.use(tessel.port['A']);
 //WebSocket connection to main server
-var ws = new WebSocket("ws://rutgersisn.localtunnel.me");
+var ws = new WebSocket('ws://rutgersisn.localtunnel.me');
 
 //When climate module is ready
-climate.on("ready", function() {
-    console.log("Connected to climate module!");
+climate.on('ready', function() {
+    console.log('Connected to climate module!');
 
     //When Websocket connection is opened
-    ws.on("open", function() {
-        console.log("Opened connection!");
+    ws.on('open', function() {
+        console.log('Opened connection!');
 
         //Log temperature and humidity every second
         var temperature;
         var humidity;
 
         setInterval(function() {
-            climate.readTemperature("f", function(err, temp) {
+            climate.readTemperature('f', function(err, temp) {
                 climate.readHumidity(function(err, humid) {
-                    temperature = temp.toFixed(4) + "F";
-                    humidity = humid.toFixed(4) + "%RH";
+                    temperature = temp.toFixed(4) + 'F';
+                    humidity = humid.toFixed(4) + '%RH';
                 });
             });
 
@@ -43,13 +43,13 @@ climate.on("ready", function() {
                     humid: humidity
                 }));
             } catch (error) {
-                console.log("Error caught while sending: " + error);
+                console.log('Error caught while sending: ' + error);
             }
         }, 1000);
     });
 });
 
 //Log errors if present
-climate.on("error", function(err) {
-    console.log("Error connecting climate module!", err);
+climate.on('error', function(err) {
+    console.log('Error connecting climate module!', err);
 });

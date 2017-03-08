@@ -4,14 +4,11 @@
   "description": "Main server application for the Rutgers IEEE ISN workshop.",
   "main": "index.js",
   "scripts": {
-    "build:watch": "run-p lint bundle",
+    "dev": "webpack-dev-server --hot --inline",
     "bundle": "webpack --progress --colors",
-    "bundle:watch": "npm run bundle -- --watch",
-    "lint": "esw --fix .",
-    "lint:watch": "watch \"npm run lint\" client/ server/ tessel/",
     "serve": "nodemon server/server.js",
     "host": "lt -s rutgersisn -p 8080",
-    "start": "run-p build:watch serve host"
+    "start": "run-p bundle serve host"
   },
   "repository": {
     "type": "git",
@@ -71,18 +68,18 @@
     "eslint": "^3.8.1",
     "eslint-loader": "^1.6.1",
     "eslint-plugin-angular": "^1.4.1",
-    "eslint-watch": "^2.1.14",
+    "file-loader": "^0.10.1",
     "html-loader": "^0.4.4",
     "html-webpack-plugin": "^2.28.0",
+    "image-webpack-loader": "^3.2.0",
     "localtunnel": "^1.8.2",
     "node-sass": "^4.4.0",
     "nodemon": "^1.11.0",
     "npm-run-all": "^4.0.1",
-    "rimraf": "^2.5.4",
     "sass-loader": "^4.1.1",
     "style-loader": "^0.13.1",
-    "watch": "^1.0.1",
-    "webpack": "^2.2.1"
+    "webpack": "^2.2.1",
+    "webpack-dev-server": "^2.4.1"
   },
   "dependencies": {
     "body-parser": "^1.15.2",
